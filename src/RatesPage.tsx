@@ -1,11 +1,20 @@
 import { useMemo, useState } from 'react'
-import { ArrowUpRight, Search, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, Search, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { pricingRules, searchRates, specialRates } from './rates-data'
 
 export function RatesPage() {
   const [query, setQuery] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
   const results = useMemo(() => searchRates(query), [query])
+  const pageSize = 10
+  const pageCount = Math.ceil(results.length / pageSize)
+  const pageResults = results.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+
+  const updateQuery = (value: string) => {
+    setQuery(value)
+    setCurrentPage(1)
+  }
 
   return <section className="container section rates-page">
     <header className="page-heading rates-heading">
@@ -43,14 +52,14 @@ export function RatesPage() {
       </div>
       <label className="rate-search-field">
         <span>Search rates by city or ZIP code</span>
-        <span className="rate-search-control"><Search size={19} aria-hidden="true" /><input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search by city or ZIP code" />{query && <button type="button" onClick={() => setQuery('')} aria-label="Clear rate search"><X size={18} /></button>}</span>
+        <span className="rate-search-control"><Search size={19} aria-hidden="true" /><input type="search" value={query} onChange={event => updateQuery(event.target.value)} placeholder="Search by city or ZIP code" />{query && <button type="button" onClick={() => updateQuery('')} aria-label="Clear rate search"><X size={18} /></button>}</span>
       </label>
-      <div className="rate-results-meta" aria-live="polite">{results.length} {results.length === 1 ? 'rate' : 'rates'} found</div>
+      <div className="rate-results-meta" aria-live="polite">{results.length ? `Showing ${(currentPage - 1) * pageSize + 1}–${Math.min(currentPage * pageSize, results.length)} of ${results.length} ${results.length === 1 ? 'rate' : 'rates'}` : '0 rates found'}</div>
       {results.length ? <div className="rates-table-wrap"><table className="rates-table">
         <caption className="sr-only">SeaTac rates by ZIP code and destination</caption>
         <thead><tr><th scope="col">ZIP code</th><th scope="col">Destination</th><th scope="col">Rate</th></tr></thead>
-        <tbody>{results.map((rate, index) => <tr key={`${rate.zip}-${rate.destination}-${index}`}><td data-label="ZIP code">{rate.zip}</td><td data-label="Destination">{rate.destination}</td><td data-label="Rate">{rate.displayRate}</td></tr>)}</tbody>
-      </table></div> : <div className="rate-empty"><h3>No matching rate found.</h3><p>Contact us for a custom quote.</p><Link className="text-link" to="/contact">Contact us<ArrowUpRight size={18} /></Link></div>}
+        <tbody>{pageResults.map((rate, index) => <tr key={`${rate.zip}-${rate.destination}-${index}`}><td data-label="ZIP code">{rate.zip}</td><td data-label="Destination">{rate.destination}</td><td data-label="Rate">{rate.displayRate}</td></tr>)}</tbody>
+      </table>{pageCount > 1 && <nav className="rate-pagination" aria-label="Rate directory pages"><span>Page {currentPage} of {pageCount}</span><div><button type="button" onClick={() => setCurrentPage(page => page - 1)} disabled={currentPage === 1}><ArrowLeft size={17} />Previous</button><button type="button" onClick={() => setCurrentPage(page => page + 1)} disabled={currentPage === pageCount}>Next<ArrowRight size={17} /></button></div></nav>}</div> : <div className="rate-empty"><h3>No matching rate found.</h3><p>Contact us for a custom quote.</p><Link className="text-link" to="/contact">Contact us<ArrowUpRight size={18} /></Link></div>}
     </section>
   </section>
 }
