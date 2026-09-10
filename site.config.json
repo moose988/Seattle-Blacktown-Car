@@ -1,0 +1,81 @@
+{
+  "siteName": "Seattle Black Town Car",
+  "canonicalBaseUrl": null,
+  "defaultTitle": "Seattle Black Car & Chauffeur Service | Seattle Black Town Car",
+  "defaultDescription": "Private black car and chauffeur service for Seattle, SEA Airport, Bellevue, Kirkland, corporate travel, events, and airport transfers.",
+  "logoPath": "/assets/seattle-town-car-logo.png",
+  "socialImagePath": "/assets/sedan.jpg",
+  "business": {
+    "name": "Seattle Black Town Car",
+    "phoneDisplay": "(206) 719-0015",
+    "phone": "+12067190015",
+    "email": "info@seattleblacktowncar.com",
+    "address": {
+      "streetAddress": null,
+      "addressLocality": "Lynnwood",
+      "addressRegion": "WA",
+      "postalCode": "98036",
+      "addressCountry": "US"
+    },
+    "businessHours": null,
+    "coordinates": null,
+    "license": null,
+    "aggregateRating": null,
+    "foundingDate": "2005",
+    "serviceRegion": [
+      "Seattle",
+      "Seattle-Tacoma International Airport (SEA)",
+      "SeaTac",
+      "Bellevue",
+      "Kirkland",
+      "Redmond",
+      "Lynnwood",
+      "Everett"
+    ],
+    "socialProfiles": []
+  },
+  "publicRoutes": [
+    {
+      "path": "/",
+      "label": "Home",
+      "title": "Seattle Black Car & Chauffeur Service | Seattle Black Town Car",
+      "description": "Private Seattle black car and chauffeur service for SEA Airport transfers, corporate transportation, events, and travel across Seattle and the Eastside."
+    },
+    {
+      "path": "/services",
+      "label": "Services",
+      "title": "Seattle Chauffeur & Private Transportation Services",
+      "description": "Explore Seattle chauffeur services for SEA Airport transfers, corporate travel, hourly transportation, weddings, events, families, and groups."
+    },
+    {
+      "path": "/fleet",
+      "label": "Fleet",
+      "title": "Seattle Sedan, SUV & Passenger Transportation Options",
+      "description": "Compare representative sedan, business class, SUV, passenger van, and first-class transportation options by passenger and luggage capacity."
+    },
+    {
+      "path": "/rates",
+      "label": "Rates",
+      "title": "Seattle Town Car Rates & SEA Airport Transfer Pricing",
+      "description": "Review Seattle town car and SeaTac airport transfer rates by city or ZIP code, plus vehicle and late-night pricing guidance."
+    },
+    {
+      "path": "/about",
+      "label": "About",
+      "title": "About Our Seattle Chauffeur Company | Since 2005",
+      "description": "Learn about Seattle Black Town Car, a Seattle-area professional chauffeur and private transportation company serving the region since 2005."
+    },
+    {
+      "path": "/contact",
+      "label": "Contact",
+      "title": "Contact Seattle Black Town Car",
+      "description": "Contact Seattle Black Town Car to discuss airport transfers, chauffeur service, corporate transportation, group travel, and private journeys."
+    },
+    {
+      "path": "/book",
+      "label": "Book",
+      "title": "Book Private Transportation in Seattle",
+      "description": "Plan a Seattle private car or chauffeur journey with pickup, destination, passenger, luggage, vehicle, and accessibility details in one request."
+    }
+  ]
+}

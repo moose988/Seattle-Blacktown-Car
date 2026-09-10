@@ -351,8 +351,8 @@ const isLateNight = (time: string) => {
   return time >= pricingRules.lateNightStart || time < pricingRules.lateNightEnd
 }
 
-const formatRange = (minRate: number, maxRate: number, fromSingle = false) =>
-  minRate === maxRate ? (fromSingle ? `From $${minRate}` : `$${minRate}`) : `$${minRate} – $${maxRate}`
+const derivedUpperBound = (rate: number) => rate + Math.max(10, Math.ceil(rate * 0.1 / 5) * 5)
+const formatRange = (minRate: number, maxRate: number) => `$${minRate}–$${maxRate}`
 
 export function calculateStaticEstimate(input: {
   type: string
@@ -388,10 +388,10 @@ export function calculateStaticEstimate(input: {
     if (isLateNight(input.time)) adjustments.push({ label: 'Late-night pickup', amount: pricingRules.lateNightPickup })
     const surcharge = adjustments.reduce((sum, adjustment) => sum + adjustment.amount, 0)
     const minRate = parsed.minRate + surcharge
-    const maxRate = parsed.maxRate + surcharge
+    const maxRate = (parsed.minRate === parsed.maxRate ? derivedUpperBound(parsed.maxRate) : parsed.maxRate) + surcharge
     return {
       matched: true,
-      priceLabel: formatRange(minRate, maxRate, minRate === maxRate),
+      priceLabel: formatRange(minRate, maxRate),
       baseLabel: special.displayRate,
       matchLabel: `${special.destination} · ${special.vehicle}`,
       sourceRate: special.displayRate,
@@ -423,15 +423,14 @@ export function calculateStaticEstimate(input: {
 
   const surcharge = adjustments.reduce((sum, adjustment) => sum + adjustment.amount, 0)
   const minRate = baseMin + surcharge
-  const maxRate = baseMax + surcharge
-  const singlePublishedPrice = parsedMatches.length === 1 && baseMin === baseMax
+  const maxRate = (baseMin === baseMax ? derivedUpperBound(baseMax) : baseMax) + surcharge
   const sourceRate = parsedMatches.length === 1 ? parsedMatches[0].rate.displayRate : undefined
   const notes = [...new Set(parsedMatches.map(result => result.parsed.note).filter(Boolean))].join('; ')
 
   return {
     matched: true,
-    priceLabel: formatRange(minRate, maxRate, singlePublishedPrice),
-    baseLabel: formatRange(baseMin, baseMax, false),
+    priceLabel: formatRange(minRate, maxRate),
+    baseLabel: baseMin === baseMax ? `$${baseMin}` : formatRange(baseMin, baseMax),
     matchLabel: parsedMatches.length === 1
       ? `${parsedMatches[0].rate.destination} · ${parsedMatches[0].rate.zip}`
       : `${parsedMatches[0].rate.destination} · ${parsedMatches.length} ZIP codes`,

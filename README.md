@@ -1,32 +1,26 @@
-# React + TypeScript + Vite
+# Seattle Black Town Car frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React, TypeScript, Vite, and React Router power this customer-facing demonstration. It remains frontend-only: the booking journey does not submit a reservation or process payment.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Validation commands:
+
+```bash
+npx tsc -b
+npm run lint
+npm run build
+```
+
+## Site and SEO configuration
+
+Verified identity, public routes, titles, descriptions, service regions, and optional business fields live in `site.config.json`.
+
+Set `VITE_SITE_URL` to the verified production origin, including `https://`, when the custom domain is confirmed. The build then generates absolute URLs in `public/sitemap.xml`, adds its absolute URL to `public/robots.txt`, and uses the same origin for client-rendered canonical and social metadata. Until then, the committed files intentionally avoid claiming an unverified canonical host.
+
+`vercel.json` provides the React Router SPA fallback while Vercel's filesystem handling continues to serve real static assets directly.

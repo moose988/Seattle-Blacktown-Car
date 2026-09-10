@@ -1,0 +1,42 @@
+# Seattle Black Town Car
+
+Seattle Black Town Car is a professional chauffeur and private transportation company serving the Seattle area since 2005.
+
+## Services
+
+- Airport transportation, including Seattle-Tacoma International Airport (SEA / SeaTac)
+- Corporate transportation
+- Hourly chauffeur service
+- Event transportation
+- Group transportation
+- Private city-to-city transportation represented in the published rate data
+
+## Service area
+
+Primary areas represented on the website include Seattle, SeaTac, Bellevue, Kirkland, Redmond, Lynnwood, and Everett.
+
+## Vehicle categories
+
+The representative fleet categories are Standard Sedan, Business Class, Luxury SUV, Passenger Van, and First Class. Passenger and luggage capacities shown on the website are illustrative and are used to identify compatible vehicle classes.
+
+## Pricing and booking
+
+Published estimates come from the website's maintained static rate data. Customer-facing prices are shown as estimated ranges; custom trips use a quote request path. Final pricing and availability are confirmed with the reservation. Gratuity is excluded where disclosed.
+
+This website is a frontend demonstration. It does not process payment, create an account, or submit a real reservation.
+
+## Public pages
+
+- Home: /
+- Services: /services
+- Fleet: /fleet
+- Rates: /rates
+- About: /about
+- Contact: /contact
+- Booking journey: /book
+
+## Verified contact information
+
+- Telephone: +1-206-719-0015
+- Email: info@seattleblacktowncar.com
+- Location: Lynnwood, Washington 98036, United States
